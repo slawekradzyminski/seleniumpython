@@ -1,4 +1,6 @@
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class DuckDuckGoResultPage:
@@ -14,6 +16,8 @@ class DuckDuckGoResultPage:
         self.browser = browser
 
     def link_div_count(self):
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.visibility_of_element_located(self.LINK_DIVS))
         link_divs = self.browser.find_elements(*self.LINK_DIVS)
         return len(link_divs)
 
