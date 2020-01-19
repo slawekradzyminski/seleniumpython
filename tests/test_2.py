@@ -1,12 +1,13 @@
 import pytest
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture
 def browser():
     # Initialize ChromeDriver
-    driver = Chrome()
+    driver = Chrome(executable_path=ChromeDriverManager().install())
     # Wait implicitly for elements to be ready before attempting interactions
     driver.implicitly_wait(3)
 
