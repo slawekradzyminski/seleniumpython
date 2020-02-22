@@ -23,13 +23,14 @@ def test_my_first_chrome_selenium_test():
 
 # Test - uruchomienie Firefoxa
 def test_my_first_firefox_selenium_test():
-    zadanie = "Dla Was"
-
     # Uruchomienie przeglądarki Firefox. Ścieżka do geckodrivera (drivera dla Firefoxa)
     # ustawiana automatycznie przez bibliotekę webdriver-manager
+    browser = Firefox(executable_path=GeckoDriverManager().install())
 
-    # Otwarcie strony testareny - pierwsze użycie Selenium API
 
-    # Weryfikacja czy tytuł otwartej strony zawiera w sobie 'TestArena'
+    # Otwarcie strony www.google.pl
+
+    # Weryfikacja tytułu
 
     # Zamknięcie przeglądarki
+    browser.quit()
