@@ -8,7 +8,7 @@ class DuckDuckGoResultPage:
     @classmethod
     def PHRASE_RESULTS(cls, phrase):
         xpath = f"//div[@id='links']//*[contains(text(), '{phrase}')]"
-        return (By.XPATH, xpath)
+        return By.XPATH, xpath
 
     def __init__(self, browser):
         self.browser = browser
