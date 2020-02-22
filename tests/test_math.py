@@ -11,8 +11,9 @@ def test_subtraction():
 
 
 def test_divide_by_zero():
-  with pytest.raises(ZeroDivisionError):
-    result = 1 / 0
+    with pytest.raises(ZeroDivisionError):
+        result = 1 / 0
+
 
 @pytest.mark.parametrize(
     "a,b,expected",
