@@ -1,8 +1,8 @@
 from selenium.webdriver.common.by import By
 
-class HomePage:
 
-    # Pole dostępne dla wszystkich metod klasy
+class HomePage:
+    # Zmienne dostępne dla wszystkich metod klasy
     URL = 'https://www.awesome-testing.com'
     post = (By.CLASS_NAME, 'post-title')
 
@@ -30,4 +30,3 @@ class HomePage:
     def click_label(self, param):
         cypress_label = self.browser.find_element(By.LINK_TEXT, 'Cypress')
         cypress_label.click()
-
