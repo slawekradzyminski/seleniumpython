@@ -4,7 +4,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support import expected_conditions
 
 
 @pytest.fixture()
@@ -44,7 +44,7 @@ def test_post_count_after_search(browser):
     # grey_status_bar to Pythonowy tuple https://www.w3schools.com/python/python_tuples.asp
     wait = WebDriverWait(browser, 10)
     grey_status_bar = (By.CLASS_NAME, 'status-msg-body')
-    wait.until(EC.visibility_of_element_located(grey_status_bar))
+    wait.until(expected_conditions.visibility_of_element_located(grey_status_bar))
 
     # Pobranie listy tytułów
     titles = browser.find_elements(By.CLASS_NAME, 'post-title')
@@ -64,7 +64,7 @@ def test_post_count_on_cypress_label(browser):
     # grey_status_bar to Pythonowy tuple https://www.w3schools.com/python/python_tuples.asp
     wait = WebDriverWait(browser, 10)
     grey_status_bar = (By.CLASS_NAME, 'status-msg-body')
-    wait.until(EC.visibility_of_element_located(grey_status_bar))
+    wait.until(expected_conditions.visibility_of_element_located(grey_status_bar))
 
     # Pobranie listy tytułów
     titles = browser.find_elements(By.CLASS_NAME, 'post-title')
