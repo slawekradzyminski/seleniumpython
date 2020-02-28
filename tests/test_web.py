@@ -15,7 +15,7 @@ def test_my_first_chrome_selenium_test():
     browser.get('http://demo.testarena.pl/zaloguj')
 
     # Weryfikacja czy tytuł otwartej strony zawiera w sobie 'TestArena'
-    assert browser.title.__contains__('TestArena')
+    assert 'TestArena' in browser.title
 
     # Zamknięcie przeglądarki
     browser.quit()
