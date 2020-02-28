@@ -19,7 +19,7 @@ def test_post_count():
     titles = browser.find_elements(By.CLASS_NAME, 'post-title')
 
     # Asercja że lista ma 4 elementy
-    assert titles.__len__() == 4
+    assert len(titles) == 4
 
     # Zamknięcie przeglądarki
     browser.quit()
@@ -48,7 +48,7 @@ def test_post_count_after_search():
     titles = browser.find_elements(By.CLASS_NAME, 'post-title')
 
     # Asercja że lista ma 3 elementy
-    assert titles.__len__() == 3
+    assert len(titles) == 3
 
     # Zamknięcie przeglądarki
     browser.quit()
@@ -75,7 +75,7 @@ def test_post_count_on_cypress_label():
     titles = browser.find_elements(By.CLASS_NAME, 'post-title')
 
     # Asercja że lista ma 1 element
-    assert titles.__len__() == 1
+    assert len(titles) == 1
 
     # Zamknięcie przeglądarki
     browser.quit()

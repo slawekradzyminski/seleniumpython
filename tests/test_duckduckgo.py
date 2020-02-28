@@ -27,7 +27,7 @@ def test_searching_in_duckduckgo():
 
     # Sprawdzenie że pierwszy wynik ma tytuł 'Vistula University in Warsaw'
     listOfTitles = browser.find_elements(By.CLASS_NAME, 'result__title')
-    assert listOfTitles.__getitem__(0).text == 'Vistula University in Warsaw'
+    assert listOfTitles[1].text == 'Vistula University in Warsaw'
 
     # Zamknięcie przeglądarki
     browser.quit()

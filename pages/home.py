@@ -15,9 +15,9 @@ class HomePage:
         self.browser.get(self.URL)
 
     # weryfikacja liczby postów
-    def verify_post_count(self, expectedCount):
+    def verify_post_count(self, expected_count):
         titles = self.browser.find_elements(*self.post)
-        assert titles.__len__() == expectedCount
+        assert len(titles) == expected_count
 
     # wyszukiwanie
     def search(self, search_term):

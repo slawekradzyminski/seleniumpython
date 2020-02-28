@@ -15,6 +15,6 @@ class SearchResultPage:
         wait.until(expected_conditions.visibility_of_element_located(grey_status_bar))
 
     # weryfikacja liczby postów
-    def verify_post_count(self, expectedCount):
+    def verify_post_count(self, expected_count):
         titles = self.browser.find_elements(By.CLASS_NAME, 'post-title')
-        assert titles.__len__() == expectedCount
+        assert len(titles) == expected_count

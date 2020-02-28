@@ -15,7 +15,7 @@ def test_my_first_chrome_selenium_test():
     browser.get('http://demo.testarena.pl/zaloguj')
 
     # Weryfikacja czy tytuł otwartej strony zawiera w sobie 'TestArena'
-    assert browser.title.__contains__('TestArena')
+    assert 'TestArena' in browser.title
 
     # Zamknięcie przeglądarki
     browser.quit()
@@ -27,10 +27,11 @@ def test_my_first_firefox_selenium_test():
     # ustawiana automatycznie przez bibliotekę webdriver-manager
     browser = Firefox(executable_path=GeckoDriverManager().install())
 
-
     # Otwarcie strony www.google.pl
+    browser.get('https://www.google.pl')
 
     # Weryfikacja tytułu
+    assert 'Google' in browser.title
 
     # Zamknięcie przeglądarki
     browser.quit()
