@@ -1,3 +1,5 @@
+import time
+
 import pytest
 from selenium.webdriver import Chrome
 from selenium import webdriver
@@ -6,9 +8,12 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 import config
+import string
+import random
 
-login = 'administrator@testarena.pl'
-password = 'sumXQQ72$L'
+from pages.home_page import HomePage
+from pages.login_page import LoginPage
+from pages.profile_page import ProfilePage
 
 
 @pytest.fixture()
@@ -20,11 +25,35 @@ def browser():
 
 
 def test_login_successfully(browser):
-    browser.find_element(By.ID, 'email').send_keys(config.login)
-    browser.find_element(By.ID, 'password').send_keys(config.password)
-    browser.find_element(By.ID, 'login').click()
+    login_page = LoginPage(browser)
+    login_page.login(config.login, config.password)
+    home_page = HomePage(browser)
+    home_page.wait_for_load()
 
-    wait = WebDriverWait(browser, 10)
-    grey_bar = (By.LINK_TEXT, 'Kokpit')
-    wait.until(expected_conditions.presence_of_element_located(grey_bar))
 
+def test_logout_successfully(browser):
+    login_page = LoginPage(browser)
+    login_page.login(config.login, config.password)
+    home_page = HomePage(browser)
+    home_page.logout()
+
+    assert browser.find_element(By.CLASS_NAME, 'login_avatar').is_displayed()
+
+
+def test_open_user_profile(browser):
+    login_page = LoginPage(browser)
+    login_page.login(get_random_string(10), config.password)
+    home_page = HomePage(browser)
+    home_page.wait_for_load()
+    home_page.go_to_user_profile()
+    profile_page = ProfilePage(browser)
+    profile_page.verify_email(config.login)
+
+    project_name = get_random_string(10)
+    browser.find_element(By.ID, 'name').send_keys(project_name)
+
+    browser.find_element(By.ID, 'search').send_keys(project_name)
+
+
+def get_random_string(length):
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
