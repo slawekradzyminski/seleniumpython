@@ -1,5 +1,3 @@
-import pytest
-import time
 from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
