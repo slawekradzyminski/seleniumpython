@@ -1,13 +1,26 @@
 import time
 
 from selenium.webdriver import Chrome
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
 def test_searching_in_bing():
     # Uruchomienie przeglądarki Chrome. Ścieżka do chromedrivera
-    browser = Chrome(executable_path=ChromeDriverManager().install())
+    chrome_options = Options()
+    options = [
+        "--headless",
+        "--disable-gpu",
+        "--window-size=1920,1200",
+        "--ignore-certificate-errors",
+        "--disable-extensions",
+        "--no-sandbox",
+        "--disable-dev-shm-usage"
+    ]
+    for option in options:
+        chrome_options.add_argument(option)
+    browser = Chrome(executable_path=ChromeDriverManager().install(), options=chrome_options)
 
     # Otwarcie strony bing
     browser.get('https://bing.com')
