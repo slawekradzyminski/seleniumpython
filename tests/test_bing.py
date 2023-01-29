@@ -5,20 +5,18 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-def test_searching_in_duckduckgo():
+def test_searching_in_bing():
     # Uruchomienie przeglądarki Chrome. Ścieżka do chromedrivera
-    # ustawiana automatycznie przez bibliotekę webdriver-manager
     browser = Chrome(executable_path=ChromeDriverManager().install())
-    browser.set_window_size(1720, 1280)
 
-    # Otwarcie strony duckduckgo
-    browser.get('https://duckduckgo.com')
+    # Otwarcie strony bing
+    browser.get('https://bing.com')
 
     # Znalezienie paska wyszukiwania
-    search_input = browser.find_element(By.CSS_SELECTOR, "#searchbox_input")
+    search_input = browser.find_element(By.CSS_SELECTOR, "#sb_form_q")
 
     # Znalezienie guzika wyszukiwania (lupki)
-    search_button = browser.find_element(By.CSS_SELECTOR, "[aria-label=Search]")
+    search_button = browser.find_element(By.CSS_SELECTOR, "#search_icon")
 
     # Asercje że elementy są widoczne dla użytkownika
     assert search_input.is_displayed() is True
@@ -29,13 +27,13 @@ def test_searching_in_duckduckgo():
     search_button.click()
 
     # Sprawdzenie że lista wyników jest dłuższa niż 2
-    search_results = browser.find_elements(By.CSS_SELECTOR, '.nrn-react-div')
+    search_results = browser.find_elements(By.CSS_SELECTOR, '.b_algo')
     assert len(search_results) > 2
 
     ## Sprawdzenie że pierwszy element to strona uczelni
-    first_result = browser.find_element(By.CSS_SELECTOR, '#r1-0 h2 span')
-    text_inside_element = first_result.text
-    assert text_inside_element == 'Home - Vistula University'
+    titles = browser.find_element(By.CSS_SELECTOR, '.b_topTitle')
+    first_title_text = titles[0].text
+    assert first_title_text == 'Home - Vistula University'
 
     # Zamknięcie przeglądarki
     time.sleep(1)
