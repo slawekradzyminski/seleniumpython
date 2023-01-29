@@ -29,10 +29,7 @@ jobs:
       - name: Install xvfb
         run: sudo apt-get install xvfb
 
-      - name: Running the Python script
-        run: pytest tests/test_bing.py
-
       - name: GUI tests
         uses: GabrielBB/xvfb-action@v1
         with:
-          run: pytest tests/test_chrome.py
+          run: pytest tests/
