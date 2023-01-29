@@ -13,36 +13,37 @@ env:
   GRID_BROWSER_FF_PORT: 5555
   GRID_BROWSER_CHROME_PORT: 5556
 
-services:
-  selenium-hub:
-    image: selenium/hub:4.8.0-20230123
-    ports:
-      - "$GRID_HUB_PORT:4444"
-    command: ["-shm-size", "1g"]
-  firefox:
-    image: selenium/node-firefox:4.8.0-20230123
-    depends_on:
-      - selenium-hub
-    environment:
-      HUB_PORT_4444_TCP_ADDR: selenium-hub
-      HUB_PORT_4444_TCP_PORT: 4444
-    ports:
-      - "$GRID_BROWSER_FF_PORT:5555"
-    command: ["-shm-size", "1g"]
-  chrome:
-    image: selenium/node-chrome:4.8.0-20230123
-    depends_on:
-      - selenium-hub
-    environment:
-      HUB_PORT_4444_TCP_ADDR: selenium-hub
-      HUB_PORT_4444_TCP_PORT: 4444
-    ports:
-      - "$GRID_BROWSER_CHROME_PORT:5556"
-    command: ["-shm-size", "1g"]
+
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    services:
+      selenium-hub:
+        image: selenium/hub:4.8.0-20230123
+        ports:
+          - "$GRID_HUB_PORT:4444"
+        command: [ "-shm-size", "1g" ]
+      firefox:
+        image: selenium/node-firefox:4.8.0-20230123
+        depends_on:
+          - selenium-hub
+        environment:
+          HUB_PORT_4444_TCP_ADDR: selenium-hub
+          HUB_PORT_4444_TCP_PORT: 4444
+        ports:
+          - "$GRID_BROWSER_FF_PORT:5555"
+        command: [ "-shm-size", "1g" ]
+      chrome:
+        image: selenium/node-chrome:4.8.0-20230123
+        depends_on:
+          - selenium-hub
+        environment:
+          HUB_PORT_4444_TCP_ADDR: selenium-hub
+          HUB_PORT_4444_TCP_PORT: 4444
+        ports:
+          - "$GRID_BROWSER_CHROME_PORT:5556"
+        command: [ "-shm-size", "1g" ]
 
     steps:
     - name: Checkout code
