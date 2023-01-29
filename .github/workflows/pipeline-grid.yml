@@ -69,7 +69,11 @@ jobs:
       env:
         GRID_BROWSER_CHROME_PORT: 5556
 
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
     - name: Run tests
-      uses: python:3.9
-      env:
-        SELENIUM_GRID_URL: "http://localhost:4444/wd/"
+      run: |
+        pytest --driver=Remote --capability=browserName:firefox --capability=platform:LINUX --remote-url=http://localhost:4444/wd/hub
+        pytest --driver=Remote --capability=browserName:chrome --capability=platform:LINUX --remote-url=http://localhost:4444/wd/hub
