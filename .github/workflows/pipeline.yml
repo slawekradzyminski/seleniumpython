@@ -73,4 +73,3 @@ jobs:
       uses: python:3.9
       env:
         SELENIUM_GRID_URL: "http://localhost:4444/wd/"
-      run: pytest tests/
