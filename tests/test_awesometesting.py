@@ -12,13 +12,17 @@ def test_post_count():
     # ustawiana automatycznie przez bibliotekę webdriver-manager
     browser = Chrome(executable_path=ChromeDriverManager().install())
 
-    # Otwarcie strony
+    # Otwarcie strony awesome-testing.com
+    browser.get("https://awesome-testing.com")
 
     # Pobranie listy tytułów
+    titles = browser.find_elements(By.CSS_SELECTOR, '.post-title')
 
     # Asercja że lista ma 4 elementy
+    assert len(titles) == 4
 
     # Zamknięcie przeglądarki
+    browser.quit()
 
 
 def test_post_count_after_search():
@@ -27,18 +31,24 @@ def test_post_count_after_search():
     browser = Chrome(executable_path=ChromeDriverManager().install())
 
     # Otwarcie strony
+    browser.get("https://awesome-testing.com")
 
     # Inicjalizacja searchbara i przycisku search
+    search_bar = browser.find_element(By.CSS_SELECTOR, 'input.gsc-input')
+    search_button = browser.find_element(By.CSS_SELECTOR, '.gsc-search-button')
 
     # Szukanie
-
-    # Czekanie na stronę
+    search_bar.send_keys('cypress')
+    search_button.click()
 
     # Pobranie listy tytułów
+    titles = browser.find_elements(By.CSS_SELECTOR, '.post-title')
 
-    # Asercja że lista ma 3 elementy
+    # Asercja że lista ma 5 elementów
+    assert len(titles) == 5
 
     # Zamknięcie przeglądarki
+    browser.quit()
 
 
 def test_post_count_on_cypress_label():
@@ -47,15 +57,19 @@ def test_post_count_on_cypress_label():
     browser = Chrome(executable_path=ChromeDriverManager().install())
 
     # Otwarcie strony
+    browser.get('https://www.awesome-testing.com')
 
     # Inicjalizacja elementu z labelką
+    cypress_label = browser.find_element(By.LINK_TEXT, 'Cypress')
 
     # Kliknięcie na labelkę
-
-    # Czekanie na stronę
+    cypress_label.click()
 
     # Pobranie listy tytułów
+    titles = browser.find_elements(By.CSS_SELECTOR, '.post-title')
 
     # Asercja że lista ma 1 element
+    assert len(titles) == 1
 
     # Zamknięcie przeglądarki
+    browser.quit()

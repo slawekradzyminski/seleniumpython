@@ -31,7 +31,7 @@ def test_searching_in_bing():
     assert len(search_results) > 2
 
     ## Sprawdzenie że pierwszy element to strona uczelni
-    titles = browser.find_element(By.CSS_SELECTOR, '.b_topTitle')
+    titles = browser.find_elements(By.CSS_SELECTOR, '.b_topTitle')
     first_title_text = titles[0].text
     assert first_title_text == 'Home - Vistula University'
 
