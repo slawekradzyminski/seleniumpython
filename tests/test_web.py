@@ -74,7 +74,6 @@ def test_login_with_elements_as_objects():
     browser.quit()
 
 
-Test - uruchomienie Firefoxa
 def test_my_first_firefox_selenium_test():
     # Uruchomienie przeglądarki Firefox. Ścieżka do geckodrivera (drivera dla Firefoxa)
     # ustawiana automatycznie przez bibliotekę webdriver-manager
