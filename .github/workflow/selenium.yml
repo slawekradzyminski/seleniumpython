@@ -1,0 +1,21 @@
+name: Selenium Python
+
+on:
+  push:
+    branches:
+      - master
+      - feature
+  pull_request:
+    branches:
+      - master
+      - feature
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install PIP packages
+        run: pip install -r requirements.txt
+      - name: Run math.py test
+        run: pytest tests/math.py
