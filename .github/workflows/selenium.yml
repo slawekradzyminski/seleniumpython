@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - master
-      - 'feature'
+      - feature
   pull_request:
     branches:
       - master
-      - 'feature'
+      - feature
   
 jobs:
   build:
@@ -17,5 +17,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install PIP packages
         run: pip install -r requirements.txt
-      - name: Run math.py test
-        run: pytest tests/math.py
+      - name: Run test_math.py test
+        run: pytest tests/test_math.py
