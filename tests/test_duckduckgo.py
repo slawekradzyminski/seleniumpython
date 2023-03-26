@@ -9,7 +9,7 @@ def test_searching_in_duckduckgo():
     browser = Chrome(executable_path=ChromeDriverManager().install())
 
     # Otwarcie strony duckduckgo
-
+    browser.get('https://duckduckgo.com')
     # Znalezienie paska wyszukiwania
 
     # Znalezienie guzika wyszukiwania (lupki)
