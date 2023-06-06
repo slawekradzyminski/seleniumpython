@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions
 
+from pages.arena.arena_messages import ArenaMessagesPage
 from utils.random_message import generate_random_text
 
 
@@ -27,5 +28,9 @@ def browser():
 
 def test_should_add_new_message(browser):
     random_text = generate_random_text(10)
+    arena_messages_page = ArenaMessagesPage(browser)
+    arena_messages_page.wait_for_text_area_load()
+    arena_messages_page.insert_message(random_text)
+
 
 

@@ -16,6 +16,3 @@ class SearchResultPage:
     def verify_post_count(self, expected_count):
         titles = self.browser.find_elements(By.CSS_SELECTOR, '.post-title')
         assert len(titles) == expected_count
-
-
-

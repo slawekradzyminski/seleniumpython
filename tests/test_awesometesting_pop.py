@@ -30,7 +30,7 @@ def test_post_count_after_search(browser):
 
 
 def test_post_count_on_2016_label(browser):
-    label_2016 = browser.find_element(By.LINK_TEXT, '2016')
-    label_2016.click()
-    titles = browser.find_elements(By.CSS_SELECTOR, '.post-title')
-    assert len(titles) == 24
+    home_page = HomePage(browser)
+    home_page.click_label('2016')
+    search_result_page = SearchResultPage(browser)
+    search_result_page.verify_post_count(24)

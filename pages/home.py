@@ -15,3 +15,7 @@ class HomePage:
         search_button = self.browser.find_element(By.CSS_SELECTOR, 'input.gsc-search-button')
         search_bar.send_keys(query)
         search_button.click()
+
+    def click_label(self, label_text):
+        label_element = self.browser.find_element(By.LINK_TEXT, label_text)
+        label_element.click()
