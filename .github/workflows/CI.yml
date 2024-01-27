@@ -20,7 +20,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run math tests
-      run: python tests/test_math.py
+      run: pytest tests/test_math.py
 
   test_web_chrome:
     runs-on: ubuntu-latest
@@ -46,5 +46,4 @@ jobs:
     - name: Run web tests
       run: |
         export CHROMEWEBDRIVER=$HOME/chromedriver
-        python tests/test_web.py::test_my_first_chrome_selenium_test
-        
+        pytest tests/test_web.py::test_my_first_chrome_selenium_test
