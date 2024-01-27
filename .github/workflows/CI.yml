@@ -42,7 +42,7 @@ jobs:
       uses: nanasess/setup-chromedriver@v1.0.1
 
     - name: Setup Edge Driver
-      uses: mcr.microsoft.com/msedge/msedgedriver
+      uses: mcr.microsoft.com/msedge/msedgedriver@latest
 
     - name: Run web tests
       run: python tests/test_web.py
