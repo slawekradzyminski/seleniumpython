@@ -20,7 +20,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run math tests
-      run: python test_math.py
+      run: python tests/test_math.py
 
   test_web:
     runs-on: ubuntu-latest
@@ -42,7 +42,7 @@ jobs:
       uses: nanasess/setup-chromedriver@v1.0.1
 
     - name: Setup Edge Driver
-      uses: microsoft/edge-docker@v1.0.0
+      uses: mcr.microsoft.com/msedge/msedgedriver
 
     - name: Run web tests
-      run: python test_web.py
+      run: python tests/test_web.py
