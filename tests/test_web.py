@@ -1,7 +1,8 @@
 from selenium.webdriver import Chrome
-from selenium.webdriver import Firefox
+from selenium.webdriver import Edge
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.chrome import ChromeDriverManager
 
 # Test - uruchomienie Chroma
@@ -21,11 +22,12 @@ def test_my_first_chrome_selenium_test():
     browser.quit()
 
 
-# Test - uruchomienie Firefoxa
-def test_my_first_firefox_selenium_test():
-    # Uruchomienie przeglądarki Firefox. Ścieżka do geckodrivera (drivera dla Firefoxa)
+# Test - uruchomienie Edge
+def test_my_first_edge_selenium_test():
+    # Uruchomienie przeglądarki Edge. Ścieżka do geckodrivera (drivera dla Firefoxa)
     # ustawiana automatycznie przez bibliotekę webdriver-manager
-    browser = Firefox(executable_path=GeckoDriverManager().install())
+    service = Service(EdgeChromiumDriverManager().install())
+    browser = Edge(service=service)
 
 
     # Otwarcie strony www.google.pl
