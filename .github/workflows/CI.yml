@@ -5,6 +5,9 @@ on: [push, pull_request]
 jobs:
   test_math:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12.1', '3.11.7', '3.10.13']
 
     steps:
     - uses: actions/checkout@v4
@@ -12,7 +15,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
       run: |
@@ -24,6 +27,9 @@ jobs:
 
   test_web_chrome:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.12.1', '3.11.7', '3.10.13']
 
     steps:
     - uses: actions/checkout@v4
@@ -31,7 +37,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
+        python-version: ${{ matrix.python-version }}
 
     - name: Installing package list
       run: apt list --installed
