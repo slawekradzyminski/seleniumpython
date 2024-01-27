@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
 
@@ -29,21 +29,19 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: '3.x'
+
+    - name: Removing previous chrome instances on runner
+      run: sudo apt purge google-chrome-stable
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Setup Chrome Driver
-      uses: nanasess/setup-chromedriver@v2
+    - name: GUI tests
+      uses: GabrielBB/xvfb-action@v1.6
       with:
-        chromedriver_version: 'latest'
-
-    - name: Run web tests
-      run: |
-        export CHROMEWEBDRIVER=$HOME/chromedriver
-        pytest tests/test_web.py::test_my_first_chrome_selenium_test
+        run: pytest tests/test_web.py::test_my_first_chrome_selenium_test
