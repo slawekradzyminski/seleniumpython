@@ -35,9 +35,9 @@ jobs:
 
     - name: Installing package list
       run: apt list --installed
-      
-    - name: Removing previous chrome instances on runner
-      run: sudo apt purge google-chrome-stable
+
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
 
     - name: Installing all necessary packages
       run: pip install -r requirements.txt
