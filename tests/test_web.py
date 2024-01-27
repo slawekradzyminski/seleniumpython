@@ -1,15 +1,15 @@
 from selenium.webdriver import Chrome
 from selenium.webdriver import Firefox
-from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
-
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
 # Test - uruchomienie Chroma
 def test_my_first_chrome_selenium_test():
     # Uruchomienie przeglądarki Chrome. Ścieżka do chromedrivera
     # ustawiana automatycznie przez bibliotekę webdriver-manager
-    browser = Chrome(executable_path=ChromeDriverManager().install())
+    service = Service(ChromeDriverManager().install())
+    browser = Chrome(service=service)
 
     # Otwarcie strony testareny - pierwsze użycie Selenium API
     browser.get('http://demo.testarena.pl/zaloguj')

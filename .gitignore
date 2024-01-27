@@ -4,3 +4,5 @@
 tests/geckodriver.log
 tests/__pycache__/
 venv
+utils
+__pycache__
