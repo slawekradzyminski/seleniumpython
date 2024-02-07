@@ -8,10 +8,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions
 
+from pages.arena.home_page import HomePage
 from pages.arena.login_page import LoginPage
+from pages.arena.project_page import ProjectPage
 
 administrator_email = 'administrator@testarena.pl'
-
 
 @pytest.fixture
 def browser():
@@ -32,7 +33,8 @@ def test_testarena_login(browser):
 
 
 def test_logout(browser):
-    browser.find_element(By.CSS_SELECTOR, '.icons-switch').click()
+    home_page = HomePage(browser)
+    home_page.click_logout()
 
     assert '/zaloguj' in browser.current_url
     assert browser.find_element(By.CSS_SELECTOR, '#password').is_displayed()
@@ -53,13 +55,9 @@ def test_add_message(browser):
 
 
 def test_search_for_project(browser):
-    browser.find_element(By.CSS_SELECTOR, '.header_admin a').click()
-    browser.find_element(By.CSS_SELECTOR, '#search').send_keys('Kamil')
-    browser.find_element(By.CSS_SELECTOR, '#j_searchButton').click()
+    home_page = HomePage(browser)
+    home_page.click_on_administrator_link()
 
-    found_projects = browser.find_elements(By.CSS_SELECTOR, 'tbody tr')
-    assert len(found_projects) > 0
-
-    names = browser.find_elements(By.CSS_SELECTOR, 'tbody tr td:nth-of-type(1)')
-    for name in names:
-        assert 'kamil' in name.text.lower()
+    project_page = ProjectPage(browser)
+    project_page.search_for_project('kamil')
+    project_page.verify_projects_found('kamil')
