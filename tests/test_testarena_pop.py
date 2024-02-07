@@ -8,6 +8,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support import expected_conditions
 
+from pages.arena.login_page import LoginPage
+
 administrator_email = 'administrator@testarena.pl'
 
 
@@ -16,10 +18,9 @@ def browser():
     service = Service(ChromeDriverManager().install())
     browser = Chrome(service=service)
     browser.set_window_size(1920, 1080)
-    browser.get('http://demo.testarena.pl/zaloguj')
-    browser.find_element(By.CSS_SELECTOR, '#email').send_keys(administrator_email)
-    browser.find_element(By.CSS_SELECTOR, '#password').send_keys('sumXQQ72$L')
-    browser.find_element(By.CSS_SELECTOR, '#login').click()
+    login_page = LoginPage(browser)
+    login_page.visit()
+    login_page.login(administrator_email, 'sumXQQ72$L')
 
     yield browser
     browser.quit()

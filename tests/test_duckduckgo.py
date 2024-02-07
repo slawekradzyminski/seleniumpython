@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
@@ -23,7 +21,7 @@ def test_searching_in_duckduckgo():
 
     # Sprawdzenie że pierwszy element ma w sobie tytuł '4_testers - Kurs Tester Oprogramowania'
     # Tutaj musimy zaczekać aż tytuły się załadują
-    wait = WebDriverWait(browser, 10)
+    wait = WebDriverWait(browser, timeout=10, poll_frequency=0.2)
     # Pythonowa tupla / krotki
     result_title = (By.CSS_SELECTOR, '[data-testid=result-title-a] span')
     wait.until(expected_conditions.presence_of_all_elements_located(result_title))
