@@ -1,18 +1,25 @@
-name: Python application test
+name: Python E2E tests
 
-on: [push]
+# kiedy pipeline jest uruchamiany
+on:
+  push:
 
+# jobem jest zbiorem kroków które wykonują się wewnątrz jednego kontenera
 jobs:
   test_math:
+    # "tutaj jesteśmy już wewnątrz kontenera"
+    # 1. Konfiguracja środowiska uruchomieniowego (jaki image będzie uruchomiony)
+    # 2. Konfiguracja ktoków jakie wykonany wewnątrz tego kontenera (np. pytest tests/)
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
+    # Specifying the Docker container to use
+    container:
+      image: python:3.9-alpine
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12.1'
+    # co w ramach joba się uruchamia
+    steps:
+    # git clone nasz projekt - to jest w 100% konfiguracji Github Actions
+    - uses: actions/checkout@v4
 
     - name: Install dependencies
       run: |
